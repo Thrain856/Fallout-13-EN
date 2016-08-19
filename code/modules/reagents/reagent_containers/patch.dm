@@ -64,7 +64,7 @@
 	icon_state = "psycho"
 
 /obj/item/weapon/reagent_containers/pill/patch/medx
-	name = "Mex-X"
+	name = "Med-X"
 	desc = "Med-X is a potent opiate analgesic that binds to opioid receptors in the brain and central nervous system, reducing the perception of pain as well as the emotional response to pain. Essentially, it is a painkiller delivered by a hypodermic needle."
 	list_reagents = list("methamphetamine" = 10, "krokodil" = 10, "styptic_powder" = 10, "silver_sulfadiazine" = 10)
 	icon = 'icons/obj/syringe.dmi'

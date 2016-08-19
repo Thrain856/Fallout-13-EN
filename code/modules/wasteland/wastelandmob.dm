@@ -70,9 +70,9 @@
 	attacktext = "bites"
 	speed = 2
 
-/mob/living/simple_animal/hostile/gekkon
-	name = "Gekkon"
-	desc = "It's Gekkon, not G.E.C.K."
+/mob/living/simple_animal/hostile/gecko
+	name = "Gecko"
+	desc = "It's gecko, not G.E.C.K."
 	icon_state = "gekkon"
 	icon_living = "gekkon"
 	icon_dead = "gekkon_dead"
