@@ -261,3 +261,29 @@
 	can_suppress = 0
 	burst_size = 3
 	fire_delay = 1
+
+/obj/item/weapon/gun/projectile/automatic/service
+	name = "Service Rifle"
+	desc = "A semi-automatic medium power rifle, this rifle is chambered in the common 5.56mm."
+	icon_state = "arg"
+	item_state = "arg"
+	slot_flags = 0
+	origin_tech = "combat=5;materials=1"
+	mag_type = /obj/item/ammo_box/magazine/m556
+	fire_sound = 'sound/f13weapons/ServiceRifle.ogg'
+	can_suppress = 0
+	burst_size = 1
+	fire_delay = 0.7
+
+/obj/item/weapon/gun/projectile/automatic/minigun
+	name = "Minigun"
+	desc = "A minigun is a multi-barrel machine gun with a high rate of fire, employing Gatling-style rotating barrels."
+	icon_state = "arg"
+	item_state = "arg"
+	slot_flags = 0
+	origin_tech = "combat=5;materials=1"
+	mag_type = /obj/item/ammo_box/magazine/m556
+	fire_sound = 'sound/f13weapons/10mm_fire_03.ogg'
+	can_suppress = 0
+	burst_size = 3
+	fire_delay = 0.5
