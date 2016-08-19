@@ -179,11 +179,17 @@
 	desc = "The most popular flavored soft drink in the United States before the Great War.<br>It was preserved in a fairly pristine state."
 	icon_state = "nukacola"
 	item_state = "nukacola"
-	list_reagents = list("cola" = 20, "mercury" = 5,)
+	list_reagents = list("cola" = 20, "mercury" = 5, "omnizine" = 5)
 
 /obj/item/weapon/reagent_containers/food/drinks/nukacola/radioactive //Whoa, oh, oh, oh, oh, whoa, oh, oh, oh, I'm radioactive, radioactive!
 	desc = "The most popular flavored soft drink in the United States before the Great War.<br>It was preserved in a fairly pristine state.<br>The bottle is slightly glowing."
-	list_reagents = list("cola" = 15, "radium" = 10,)
+	list_reagents = list("cola" = 15, "radium" = 5,, "omnizine" = 5)
+
+/obj/item/weapon/reagent_containers/food/drinks/nukacola/quantium
+	desc = "Nuka-Cola Quantum - (the Quantum included a mild radioactive strontium isotope, (and an eighteenth fruit flavor - pomegranate). The bottle is really glowing."
+	icon_state = "nukacolaquantum"
+	item_state = "nukacolaquantum"
+	list_reagents = list("cola" = 15, "radium" = 10, "omnizine" = 15)
 
 //Paper cup
 
