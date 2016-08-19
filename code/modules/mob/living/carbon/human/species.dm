@@ -936,10 +936,10 @@
 
 		if(grav)
 			if(H.status_flags & GOTTAGOFAST)
-				. -= 1
+				. -= 0.1
 
 			if(H.status_flags & GOTTAGOREALLYFAST)
-				. -= 2
+				. -= 0.2
 
 //////////////////
 // ATTACK PROCS //
