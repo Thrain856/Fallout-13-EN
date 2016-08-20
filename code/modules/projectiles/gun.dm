@@ -171,7 +171,7 @@
 
 	if(safetyon == 1)
 		shoot_with_empty_chamber(user)
-		user << "<span class='warning'>The gun can't fire with safety on!</span>"
+		user << "<span class='warning'>The gun can't fire with safety on! (Alt-click to turn the safety off.)</span>"
 		return
 
 	//DUAL WIELDING
