@@ -548,7 +548,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/a762
-	name = "7.62"
+	name = "7.62mm"
 	id = "a762"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 1000)
@@ -556,7 +556,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/a762bleeding
-	name = "7.62 bleeding"
+	name = "7.62mm bleeding"
 	id = "a762bleeding"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 1000)
@@ -564,7 +564,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/a762hollow
-	name = "7.62 hollow"
+	name = "7.62mm hollow"
 	id = "a762hollow"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 1000)
@@ -573,7 +573,7 @@
 
 /datum/design/a762ap
 	name = "Ammo box (9mm)"
-	id = "76.2 ap"
+	id = "7.62mm ap"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 1000)
 	build_path = /obj/item/ammo_casing/a762/ap
