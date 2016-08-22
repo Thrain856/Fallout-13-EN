@@ -1051,7 +1051,7 @@
 	item_color = "recon"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HEAD
 	flags = BLOCKHAIR //It doesn't block the hair! What I did wrong?
-	armor = list(melee = 40, bullet = 30, laser = 10, energy = 10, bomb = 10, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 30, laser = 20, energy = 20, bomb = 20, bio = 50, rad = 50)
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HEAD
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HEAD
 	can_adjust = 0

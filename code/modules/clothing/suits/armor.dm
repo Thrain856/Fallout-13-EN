@@ -486,6 +486,11 @@
 	put_on_delay = 100
 	strip_delay = 200
 
+/obj/item/clothing/suit/armor/f13/t45dpowerarmor/salvaged
+	name = "Salvaged T-45d power armor"
+	desc = "Originally developed and manufactured for the United States Army by American defense contractor West Tek, the T-45d power armor was the first version of power armor to be successfully deployed in battle. This suit appears worn and battered."
+	armor = list(melee = 60, bullet = 50, laser = 50, energy = 50, bomb = 60, bio = 100, rad = 80)
+
 /obj/item/clothing/suit/armor/f13/advpowerarmor
 	name = "advanced power armor Mk I"
 	desc = "An advanced suit of armor typically used by the Enclave. It is composed of lightweight metal alloys, reinforced with ceramic castings at key stress points.<br>Additionally, like the T-51b power armor, it includes a recycling system that can convert human waste into drinkable water, and an air conditioning system for it's user's comfort."
