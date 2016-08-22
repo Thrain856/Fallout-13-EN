@@ -28,7 +28,6 @@
 	var/log_whisper = 0					// log client whisper
 	var/log_prayer = 0					// log prayers
 	var/log_law = 0						// log lawchanges
-	var/log_world_topic = 0	
 	var/log_emote = 0					// log emotes
 	var/log_attack = 0					// log attack messages
 	var/log_adminchat = 0				// log admin chat messages
@@ -48,7 +47,7 @@
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/log_world_topic = 0	
+	var/log_world_topic = 0
 	var/fps = 10
 	var/allow_holidays = 0				//toggles whether holiday-specific content should be used
 
