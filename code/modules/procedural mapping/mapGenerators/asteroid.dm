@@ -1,23 +1,23 @@
-//Asteroid turfs
-/datum/mapGeneratorModule/bottomLayer/asteroidTurfs
-	spawnableTurfs = list(/turf/simulated/floor/plating/asteroid = 100)
+//wasteland turfs
+/datum/mapGeneratorModule/bottomLayer/wastelandTurfs
+	spawnableTurfs = list(/turf/simulated/floor/plating/wasteland = 100)
 
-/datum/mapGeneratorModule/bottomLayer/asteroidWalls
+/datum/mapGeneratorModule/bottomLayer/wastelandWalls
 	spawnableTurfs = list(/turf/simulated/mineral = 100)
 
 //Border walls
-/datum/mapGeneratorModule/border/asteroidWalls
+/datum/mapGeneratorModule/border/wastelandWalls
 	spawnableAtoms = list()
 	spawnableTurfs = list(/turf/simulated/mineral = 100)
 
 //Random walls
-/datum/mapGeneratorModule/splatterLayer/asteroidWalls
+/datum/mapGeneratorModule/splatterLayer/wastelandWalls
 	clusterCheckFlags = CLUSTER_CHECK_NONE
 	spawnableAtoms = list()
 	spawnableTurfs = list(/turf/simulated/mineral = 30)
 
 //Monsters
-/datum/mapGeneratorModule/splatterLayer/asteroidMonsters
+/datum/mapGeneratorModule/splatterLayer/wastelandMonsters
 	spawnableTurfs = list()
 	spawnableAtoms = list(/mob/living/simple_animal/hostile/cazador = 2, \
 	/mob/living/simple_animal/hostile/molerat = 3, \
@@ -26,20 +26,20 @@
 
 // GENERATORS
 
-/datum/mapGenerator/asteroid/hollow
-	modules = list(/datum/mapGeneratorModule/bottomLayer/asteroidTurfs, \
-		/datum/mapGeneratorModule/border/asteroidWalls)
+/datum/mapGenerator/wasteland/hollow
+	modules = list(/datum/mapGeneratorModule/bottomLayer/wastelandTurfs, \
+		/datum/mapGeneratorModule/border/wastelandWalls)
 
-/datum/mapGenerator/asteroid/hollow/random
-	modules = list(/datum/mapGeneratorModule/bottomLayer/asteroidTurfs, \
-		/datum/mapGeneratorModule/border/asteroidWalls, \
-		/datum/mapGeneratorModule/splatterLayer/asteroidWalls)
+/datum/mapGenerator/wasteland/hollow/random
+	modules = list(/datum/mapGeneratorModule/bottomLayer/wastelandTurfs, \
+		/datum/mapGeneratorModule/border/wastelandWalls, \
+		/datum/mapGeneratorModule/splatterLayer/wastelandWalls)
 
-/datum/mapGenerator/asteroid/hollow/random/monsters
-	modules = list(/datum/mapGeneratorModule/bottomLayer/asteroidTurfs, \
-		/datum/mapGeneratorModule/border/asteroidWalls, \
-		/datum/mapGeneratorModule/splatterLayer/asteroidWalls, \
-		/datum/mapGeneratorModule/splatterLayer/asteroidMonsters)
+/datum/mapGenerator/wasteland/hollow/random/monsters
+	modules = list(/datum/mapGeneratorModule/bottomLayer/wastelandTurfs, \
+		/datum/mapGeneratorModule/border/wastelandWalls, \
+		/datum/mapGeneratorModule/splatterLayer/wastelandWalls, \
+		/datum/mapGeneratorModule/splatterLayer/wastelandMonsters)
 
-/datum/mapGenerator/asteroid/filled
-	modules = list(/datum/mapGeneratorModule/bottomLayer/asteroidWalls)
+/datum/mapGenerator/wasteland/filled
+	modules = list(/datum/mapGeneratorModule/bottomLayer/wastelandWalls)

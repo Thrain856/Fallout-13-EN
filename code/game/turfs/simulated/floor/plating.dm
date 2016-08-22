@@ -23,7 +23,7 @@
 	if(!..())
 		return
 	if(!broken && !burnt)
-		icon_state = icon_plating //Because asteroids are 'platings' too.
+		icon_state = icon_plating //Because wastelands are 'platings' too.
 
 /turf/simulated/floor/plating/attackby(obj/item/C, mob/user, params)
 	if(..())

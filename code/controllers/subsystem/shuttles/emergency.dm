@@ -165,7 +165,7 @@
 	name = "pod control computer"
 	admin_controlled = 1
 	shuttleId = "pod"
-	possible_destinations = "pod_asteroid"
+	possible_destinations = "pod_wasteland"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
 	density = 0

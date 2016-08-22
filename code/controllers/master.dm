@@ -68,9 +68,9 @@ var/global/datum/controller/master/Master = new()
 
 	preloadTemplates()
 	// Pick a random away mission.
-	createRandomZlevel()
-	// Generate asteroid.
-	make_mining_asteroid_secrets()
+	//createRandomZlevel()
+	// Generate wasteland.
+	make_mining_wasteland_secrets()
 	// Set up Z-level transistions.
 	setup_map_transitions()
 

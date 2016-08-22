@@ -94,13 +94,13 @@ var/list/teleportlocs = list()
 /area/space
 	icon_state = "space"
 	requires_power = 1
-	always_unpowered = 1
-	lighting_use_dynamic = DYNAMIC_LIGHTING_DISABLED
+	always_unpowered = 0
+	lighting_use_dynamic = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
 	valid_territory = 0
-	ambientsounds = list('sound/ambience/ambispace.ogg','sound/ambience/title2.ogg',)
+	//ambientsounds = list('sound/ambience/ambispace.ogg','sound/ambience/title2.ogg',)
 	blob_allowed = 0 //Eating up space doesn't count for victory as a blob.
 
 /area/space/nearstation
@@ -211,24 +211,24 @@ var/list/teleportlocs = list()
 
 //EXTRA
 
-/area/asteroid
+/area/wasteland
 	name = "Mines"
-	icon_state = "asteroid"
+	icon_state = "wasteland"
 	requires_power = 0
 	has_gravity = 1
-	blob_allowed = 0 //Nope, no winning on the asteroid as a blob. Gotta eat the station.
+	blob_allowed = 0 //Nope, no winning on the wasteland as a blob. Gotta eat the station.
 	valid_territory = 0
 
-/area/asteroid/cave
+/area/wasteland/cave
 	name = "Mines - Underground"
 	icon_state = "cave"
 	requires_power = 0
 
-/area/asteroid/artifactroom
+/area/wasteland/artifactroom
 	name = "Mines - Artifact"
 	icon_state = "cave"
 
-/area/asteroid/artifactroom/New()
+/area/wasteland/artifactroom/New()
 	..()
 	SetDynamicLighting()
 
@@ -1322,6 +1322,8 @@ var/list/teleportlocs = list()
 	name = "Wasteland"
 	icon_state = "away"
 	has_gravity = 1
+	luminosity = 1
+	lighting_use_dynamic = DYNAMIC_LIGHTING_DISABLED
 
 /area/awaymission/example
 	name = "Strange Station"

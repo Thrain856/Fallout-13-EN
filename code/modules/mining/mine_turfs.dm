@@ -10,7 +10,7 @@ var/global/list/rockTurfEdgeCache
 	name = "rock"
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock_nochance"
-	baseturf = /turf/simulated/floor/plating/asteroid/airless
+	baseturf = /turf/simulated/floor/plating/wasteland/airless
 	//oxygen = 0
 	//nitrogen = 0
 	opacity = 1
@@ -18,8 +18,8 @@ var/global/list/rockTurfEdgeCache
 	blocks_air = 1
 	layer = TURF_LAYER + 0.1
 	//temperature = TCMB
-	var/environment_type = "asteroid"
-	var/turf/simulated/floor/plating/asteroid/turf_type = /turf/simulated/floor/plating/asteroid //For basalt vs normal asteroid
+	var/environment_type = "wasteland"
+	var/turf/simulated/floor/plating/wasteland/turf_type = /turf/simulated/floor/plating/wasteland //For basalt vs normal wasteland
 	var/mineralType = null
 	var/mineralAmt = 3
 	var/spread = 0 //will the seam spread?
@@ -30,8 +30,8 @@ var/global/list/rockTurfEdgeCache
 
 /turf/simulated/mineral/volcanic
 	environment_type = "basalt"
-	turf_type = /turf/simulated/floor/plating/asteroid/basalt
-	baseturf = /turf/simulated/floor/plating/asteroid/basalt
+	turf_type = /turf/simulated/floor/plating/wasteland/basalt
+	baseturf = /turf/simulated/floor/plating/wasteland/basalt
 
 /turf/simulated/mineral/ex_act(severity, target)
 	..()
@@ -125,7 +125,7 @@ var/global/list/rockTurfEdgeCache
 				if("Plasma")
 					M = new/turf/simulated/mineral/plasma(src)
 				if("Cave")
-					new/turf/simulated/floor/plating/asteroid/airless/cave(src)
+					new/turf/simulated/floor/plating/wasteland/airless/cave(src)
 				if("Gibtonite")
 					M = new/turf/simulated/mineral/gibtonite(src)
 				if("Bananium")
@@ -322,18 +322,18 @@ var/global/list/rockTurfEdgeCache
 		if(det_time >= 1 && det_time <= 2)
 			G.quality = 2
 			G.icon_state = "Gibtonite ore 2"
-	var/turf/simulated/floor/plating/asteroid/G = ChangeTurf(turf_type)
+	var/turf/simulated/floor/plating/wasteland/G = ChangeTurf(turf_type)
 	G.fullUpdateMineralOverlays()
 
 ////////////////////////////////End Gibtonite
 
-/turf/simulated/floor/plating/asteroid/airless/cave
+/turf/simulated/floor/plating/wasteland/airless/cave
 	var/length = 100
 	var/mob_spawn_list = list("Badmutant" = 1, "Casador" = 3, "Rat" = 20)
 	var/sanity = 1
-	turf_type = /turf/simulated/floor/plating/asteroid/airless
+	turf_type = /turf/simulated/floor/plating/wasteland/airless
 
-/turf/simulated/floor/plating/asteroid/airless/cave/New(loc, var/length, var/go_backwards = 1, var/exclude_dir = -1)
+/turf/simulated/floor/plating/wasteland/airless/cave/New(loc, var/length, var/go_backwards = 1, var/exclude_dir = -1)
 
 	// If length (arg2) isn't defined, get a random length; otherwise assign our length to the length arg.
 	if(!length)
@@ -354,7 +354,7 @@ var/global/list/rockTurfEdgeCache
 	SpawnFloor(src)
 	..()
 
-/turf/simulated/floor/plating/asteroid/airless/cave/proc/make_tunnel(dir)
+/turf/simulated/floor/plating/wasteland/airless/cave/proc/make_tunnel(dir)
 
 	var/turf/simulated/mineral/tunnel = src
 	var/next_angle = pick(45, -45)
@@ -392,7 +392,7 @@ var/global/list/rockTurfEdgeCache
 			dir = angle2dir(dir2angle(dir) + next_angle)
 
 
-/turf/simulated/floor/plating/asteroid/airless/cave/proc/SpawnFloor(turf/T)
+/turf/simulated/floor/plating/wasteland/airless/cave/proc/SpawnFloor(turf/T)
 	for(var/turf/S in range(2,T))
 		if(istype(S, /turf/space) || istype(S.loc, /area/mine/explored))
 			sanity = 0
@@ -405,7 +405,7 @@ var/global/list/rockTurfEdgeCache
 	spawn(2)
 		t.fullUpdateMineralOverlays()
 
-/turf/simulated/floor/plating/asteroid/airless/cave/proc/SpawnMonster(turf/T)
+/turf/simulated/floor/plating/wasteland/airless/cave/proc/SpawnMonster(turf/T)
 	if(prob(30))
 		if(istype(loc, /area/mine/explored))
 			return
@@ -454,7 +454,7 @@ var/global/list/rockTurfEdgeCache
 		for (i=0;i<mineralAmt;i++)
 			new mineralType(src)
 		feedback_add_details("ore_mined","[mineralType]|[mineralAmt]")
-	var/turf/simulated/floor/plating/asteroid/N = ChangeTurf(turf_type)
+	var/turf/simulated/floor/plating/wasteland/N = ChangeTurf(turf_type)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
 	N.fullUpdateMineralOverlays()
 	return
@@ -494,52 +494,52 @@ var/global/list/rockTurfEdgeCache
 	else
 		return
 
-/**********************Asteroid**************************/
+/**********************wasteland**************************/
 
-/turf/simulated/floor/plating/asteroid/airless
+/turf/simulated/floor/plating/wasteland/airless
 	//now with air(i hope)
-	turf_type = /turf/simulated/floor/plating/asteroid/airless
+	turf_type = /turf/simulated/floor/plating/wasteland/airless
 	//temperature = TCMB
 
-/turf/simulated/floor/plating/asteroid/basalt
+/turf/simulated/floor/plating/wasteland/basalt
 	name = "volcanic floor"
-	baseturf = /turf/simulated/floor/plating/asteroid/basalt
+	baseturf = /turf/simulated/floor/plating/wasteland/basalt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
 	icon_plating = "basalt"
 	environment_type = "basalt"
 
-/turf/simulated/floor/plating/asteroid/basalt/lava //lava underneath
+/turf/simulated/floor/plating/wasteland/basalt/lava //lava underneath
 	baseturf = /turf/simulated/floor/plating/lava/smooth
 
-/turf/simulated/floor/plating/asteroid/basalt/airless
+/turf/simulated/floor/plating/wasteland/basalt/airless
 	//temperature = TCMB
 
-/turf/simulated/floor/plating/asteroid/snow
+/turf/simulated/floor/plating/wasteland/snow
 	name = "snow"
 	desc = "Looks cold."
 	icon = 'icons/turf/snow.dmi'
-	baseturf = /turf/simulated/floor/plating/asteroid/snow
+	baseturf = /turf/simulated/floor/plating/wasteland/snow
 	icon_state = "snow"
 	icon_plating = "snow"
 	temperature = 180
 	slowdown = 2
 	environment_type = "snow"
 
-/turf/simulated/floor/plating/asteroid/snow/airless
+/turf/simulated/floor/plating/wasteland/snow/airless
 	//temperature = TCMB
 
-/turf/simulated/floor/plating/asteroid/New()
+/turf/simulated/floor/plating/wasteland/New()
 	var/proper_name = name
 	..()
 	name = proper_name
 	if(prob(20))
 		icon_state = "[environment_type][rand(0,12)]"
 
-/turf/simulated/floor/plating/asteroid/burn_tile()
+/turf/simulated/floor/plating/wasteland/burn_tile()
 	return
 
-/turf/simulated/floor/plating/asteroid/ex_act(severity, target)
+/turf/simulated/floor/plating/wasteland/ex_act(severity, target)
 	contents_explosion(severity, target)
 	switch(severity)
 		if(3)
@@ -551,10 +551,10 @@ var/global/list/rockTurfEdgeCache
 			src.gets_dug()
 	return
 
-/turf/simulated/floor/plating/asteroid/singularity_act()
+/turf/simulated/floor/plating/wasteland/singularity_act()
 	return
 
-/turf/simulated/floor/plating/asteroid/singularity_pull(S, current_size)
+/turf/simulated/floor/plating/wasteland/singularity_pull(S, current_size)
 	return
 
 /turf/proc/updateMineralOverlays()

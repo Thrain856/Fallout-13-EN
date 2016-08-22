@@ -105,7 +105,7 @@
 	return 0
 
 /area/proc/firealert(obj/source)
-	if(always_unpowered == 1) //no fire alarms in space/asteroid
+	if(always_unpowered == 1) //no fire alarms in space/wasteland
 		return
 
 	var/list/cameras = list()
@@ -158,7 +158,7 @@
 	return
 
 /area/proc/burglaralert(obj/trigger)
-	if(always_unpowered == 1) //no burglar alarms in space/asteroid
+	if(always_unpowered == 1) //no burglar alarms in space/wasteland
 		return
 
 	var/list/cameras = list()

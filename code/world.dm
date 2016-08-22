@@ -1,6 +1,6 @@
 /world
 	mob = /mob/new_player
-	turf = /turf/simulated/floor/plating/asteroid
+	turf = /turf/simulated/floor/plating/wasteland
 	area = /area/awaymission
 	view = "15x15"
 	cache_lifespan = 7

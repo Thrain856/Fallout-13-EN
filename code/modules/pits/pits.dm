@@ -7,7 +7,7 @@
 	anchored = 1
 	icon = 'icons/obj/Pit.dmi'
 	mouse_opacity = 0
-	var/turf/simulated/floor/plating/asteroid/parent
+	var/turf/simulated/floor/plating/wasteland/parent
 
 obj/dugpit/New(lnk)
 	..()
@@ -40,14 +40,14 @@ obj/dugpit/New(lnk)
 	return GM
 
 
-/turf/simulated/floor/plating/asteroid //floor piece
-	name = "Asteroid"
-	baseturf = /turf/simulated/floor/plating/asteroid
+/turf/simulated/floor/plating/wasteland //floor piece
+	name = "wasteland"
+	baseturf = /turf/simulated/floor/plating/wasteland
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "asteroid"
-	icon_plating = "asteroid"
-	var/environment_type = "asteroid"
-	var/turf_type = /turf/simulated/floor/plating/asteroid //Because caves do whacky shit to revert to normal
+	icon_state = "wasteland"
+	icon_plating = "wasteland"
+	var/environment_type = "wasteland"
+	var/turf_type = /turf/simulated/floor/plating/wasteland //Because caves do whacky shit to revert to normal
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/storedindex = 0 //amount of stored items
 	var/mob/living/gravebody //is there a body in the pit?
@@ -56,7 +56,7 @@ obj/dugpit/New(lnk)
 	var/obj/dugpit/mypit
 	var/unburylevel = 0
 
-/turf/simulated/floor/plating/asteroid/proc/handle_item_insertion(obj/item/W, mob/usr)
+/turf/simulated/floor/plating/wasteland/proc/handle_item_insertion(obj/item/W, mob/usr)
 	if(!istype(W))
 		return
 	if (storedindex>=NUMCONTENT)
@@ -83,7 +83,7 @@ obj/dugpit/New(lnk)
 		W.loc = mypit
 		storedindex = storedindex+1
 
-/turf/simulated/floor/plating/asteroid/attack_hand(mob/living/carbon/human/M)
+/turf/simulated/floor/plating/wasteland/attack_hand(mob/living/carbon/human/M)
 	if (dug)
 		if (storedindex==0)
 			usr << "<span class='danger'>There is nothing in the pit!</span>"
@@ -94,21 +94,21 @@ obj/dugpit/New(lnk)
 			I.loc = M.loc
 			pitcontents-=I
 
-/turf/simulated/floor/plating/asteroid/proc/finishBury(mob/user)
+/turf/simulated/floor/plating/wasteland/proc/finishBury(mob/user)
 	user << "<span class='notice'>You cover the hole with dirt.</span>"
 	dug = 0
 	icon_plating = "[environment_type]"
 	icon_state = "[environment_type]"
 	mypit.invisibility = 101
 
-/turf/simulated/floor/plating/asteroid/proc/finishBody()
+/turf/simulated/floor/plating/wasteland/proc/finishBody()
 	gravebody.loc = mypit
 	unburylevel = 0
 
-/turf/simulated/floor/plating/asteroid/proc/finishCoffin()
+/turf/simulated/floor/plating/wasteland/proc/finishCoffin()
 	gravecoffin.loc = mypit
 
-/turf/simulated/floor/plating/asteroid/attackby(obj/item/W, mob/user, params)
+/turf/simulated/floor/plating/wasteland/attackby(obj/item/W, mob/user, params)
 	//note that this proc does not call ..()
 	if(!W || !user)
 		return 0
@@ -136,19 +136,19 @@ obj/dugpit/New(lnk)
 			if (gravebody!=null)
 				user << "<span class='notice'>You start covering the body in the hole with dirt...</span>"
 				if (do_after(user, digging_speed*3, target=gravebody))
-					if(istype(src, /turf/simulated/floor/plating/asteroid))
+					if(istype(src, /turf/simulated/floor/plating/wasteland))
 						finishBury(user)
 						finishBody()
 			else if (gravecoffin != null)
 				user << "<span class='notice'>You start burying the coffin...</span>"
 				if (do_after(user, digging_speed*1.5, target=gravebody))
-					if(istype(src, /turf/simulated/floor/plating/asteroid))
+					if(istype(src, /turf/simulated/floor/plating/wasteland))
 						finishBury(user)
 						finishCoffin()
 			else
 				user << "<span class='notice'>You start covering the hole with dirt...</span>"
 				if(do_after(user, digging_speed, target = src))
-					if(istype(src, /turf/simulated/floor/plating/asteroid))
+					if(istype(src, /turf/simulated/floor/plating/wasteland))
 						finishBury(user)
 
 
@@ -156,7 +156,7 @@ obj/dugpit/New(lnk)
 			user << "<span class='notice'>You start digging...</span>"
 			playsound(src, 'sound/effects/shovel_dig.ogg', 50, 1) //FUCK YO RUSTLE I GOT'S THE DIGS SOUND HERE
 			if(do_after(user, digging_speed, target = src))
-				if(istype(src, /turf/simulated/floor/plating/asteroid))
+				if(istype(src, /turf/simulated/floor/plating/wasteland))
 					user << "<span class='notice'>You dig a hole.</span>"
 					gets_dug(user)
 	else
@@ -166,7 +166,7 @@ obj/dugpit/New(lnk)
 			handle_item_insertion(W, user)
 
 
-/turf/simulated/floor/plating/asteroid/proc/gets_dug(mob/user)
+/turf/simulated/floor/plating/wasteland/proc/gets_dug(mob/user)
 	if(dug)
 		return
 	for (var/obj/item/I in pitcontents)
