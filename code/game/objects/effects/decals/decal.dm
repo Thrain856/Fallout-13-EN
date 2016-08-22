@@ -13,6 +13,7 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "rag" //ventred, ventorange
 	level = 4.2
+	anchored = 1	
 
 /obj/effect/decal/sign //Signs.
 	name = "sign"
