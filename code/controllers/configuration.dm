@@ -47,6 +47,7 @@
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
+	var/log_world_topic = 0
 	var/fps = 10
 	var/allow_holidays = 0				//toggles whether holiday-specific content should be used
 
@@ -90,6 +91,7 @@
 	var/extreme_popcap_message	= "The server is currently serving a high number of users, find alternative servers."
 
 	//game_options.txt configs
+	var/cross_name = "Other server"
 	var/force_random_names = 0
 	var/list/mode_names = list()
 	var/list/modes = list()				// allowed modes
