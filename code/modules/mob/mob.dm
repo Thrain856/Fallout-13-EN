@@ -465,15 +465,14 @@ var/list/slot_equipment_priority = list( \
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
-	if (!( abandon_allowed ))
+	if (!( abandon_allowed )) // Check if respawn enabled
 		return
-	if ((stat != 2 || !( ticker )))
+	if ((stat!=DEAD || !( ticker )))
 		usr << "<span class='boldnotice'>You must be dead to use this!</span>"
 		return
-	if (config.respawn_waves_enabled)
-		if (world.time % config.respawn_timer > 300) // 30 second respawn intervals
-			usr << "Respawn wave in [(config.respawn_timer - world.time % config.respawn_timer)/10] seconds"
-			return
+	if( (world.time - timeofdeath) < config.respawn_timer ) // Ensure time has elapsed
+		usr << "You can respawn in [round(abs(timeofdeath + config.respawn_timer - world.time)/10)] seconds"
+		return
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
 	usr << "<span class='boldnotice'>Please roleplay correctly!</span>"
