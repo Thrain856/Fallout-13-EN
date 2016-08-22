@@ -15,6 +15,7 @@ $RECYCLE.BIN/
 *.int
 *.backup
 *.before
+*.log
 
 # Windows Installer files
 *.cab

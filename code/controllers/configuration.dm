@@ -28,6 +28,7 @@
 	var/log_whisper = 0					// log client whisper
 	var/log_prayer = 0					// log prayers
 	var/log_law = 0						// log lawchanges
+	var/log_world_topic = 0				// log all world.Topic() calls
 	var/log_emote = 0					// log emotes
 	var/log_attack = 0					// log attack messages
 	var/log_adminchat = 0				// log admin chat messages
@@ -91,6 +92,7 @@
 
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
+	var/cross_name = "Other server"
 	var/allow_ai = 0					// allow ai job
 	var/panic_bunker = 0				// prevents new people it hasn't seen before from connecting
 	var/notify_new_player_age = 0		// how long do we notify admins of a new player

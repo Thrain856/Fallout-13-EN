@@ -1,3 +1,28 @@
+/turf/open/space/resolve_active_graph()
+	return list()
+/turf/open/proc/resolve_active_graph()
+	. = list()
+	var/datum/excited_group/EG = excited_group
+	if (blocks_air || !air)
+		return
+	if (!EG)
+		EG = new
+		EG.add_turf(src)
+
+	for (var/turf/open/ET in atmos_adjacent_turfs)
+		if ( ET.blocks_air || !ET.air)
+			continue
+
+		var/ET_EG = ET.excited_group
+		if (ET_EG)
+			if (ET_EG != EG)
+				EG.merge_groups(ET_EG)
+				EG = excited_group //merge_groups() may decide to replace our current EG
+		else
+			EG.add_turf(ET)
+		if (!ET.excited)
+			ET.excited = 1
+			. += ET
 var/datum/subsystem/air/SSair
 
 /datum/subsystem/air
@@ -126,7 +151,7 @@ var/datum/subsystem/air/SSair
 /datum/subsystem/air/proc/process_high_pressure_delta()
 	for(var/turf/T in high_pressure_delta)
 		T.high_pressure_movements()
-		T.pressure_difference = 0
+		//T.pressure_difference = 0
 	high_pressure_delta.len = 0
 
 

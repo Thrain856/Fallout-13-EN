@@ -5,7 +5,7 @@
 		#define CENTCOMM "CentComm"
 		//#define ABANDONED_SATELLITE "Abandoned Satellite"
 		//#define DERELICT "Derelicted Station"
-		//#define MINING "Mining wasteland"
+		#define MINING "Mining wasteland"
 		//#define EMPTY_AREA_1 "Empty Area 1"
 		//#define EMPTY_AREA_2 "Empty Area 2"
 		//#define AWAY_MISSION "Away Mission"
