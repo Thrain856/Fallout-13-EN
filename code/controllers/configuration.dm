@@ -28,13 +28,14 @@
 	var/log_whisper = 0					// log client whisper
 	var/log_prayer = 0					// log prayers
 	var/log_law = 0						// log lawchanges
-	var/log_world_topic = 0				// log all world.Topic() calls
 	var/log_emote = 0					// log emotes
 	var/log_attack = 0					// log attack messages
 	var/log_adminchat = 0				// log admin chat messages
 	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
+
 	var/sql_enabled = 0					// for sql switching
+
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/allow_vote_mode = 0				// allow votes to change mode
@@ -42,14 +43,19 @@
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
 	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
 	var/vote_no_dead = 0				// dead people can't vote (tbi)
+
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/fps = 10
 	var/allow_holidays = 0				//toggles whether holiday-specific content should be used
 
-	var/hostedby = null
 	var/respawn = 1
+	var/minimum_respawn_time = 2400		// Minimum time before you can respawn
+	var/respawn_timer = 2100			// Default Timer: 3 Minutes (2100/10 = 210 seconds - 30 second window)
+	var/respawn_waves_enabled = 1		// Set to 0 to disable wave spawning
+
+	var/hostedby = null
 	var/guest_jobban = 1
 	var/usewhitelist = 0
 	var/kick_inactive = 0				//force disconnect for inactive players
@@ -92,7 +98,6 @@
 
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/cross_name = "Other server"
 	var/allow_ai = 0					// allow ai job
 	var/panic_bunker = 0				// prevents new people it hasn't seen before from connecting
 	var/notify_new_player_age = 0		// how long do we notify admins of a new player
