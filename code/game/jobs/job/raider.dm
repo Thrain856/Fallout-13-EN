@@ -5,7 +5,7 @@ Raider
 	title = "Raider"
 	flag = RAIDER
 	department_flag = CIVILIAN
-	faction = "Desert"
+	faction = "Desert" // This faction is used for late joins
 	total_positions = 3
 	spawn_positions = -1 //does not matter for late join
 	supervisors = "nobody"
