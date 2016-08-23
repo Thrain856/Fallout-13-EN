@@ -5,10 +5,9 @@ Raider
 	title = "Raider"
 	flag = RAIDER
 	department_flag = CIVILIAN
-//	faction = "Desert"
-	faction = "NOSPAWN" // Uncomment line above to reenable raiders (Desert faction is all jobs late joiners can pick)
-	total_positions = 0
-	spawn_positions = 0 //does not matter for late join
+	faction = "Desert"
+	total_positions = 3
+	spawn_positions = -1 //does not matter for late join
 	supervisors = "nobody"
 	selection_color = "#dddddd"
 	access = list()
