@@ -35,7 +35,7 @@
 	var/semicd = 0						//cooldown handler
 	var/heavy_weapon = 0
 
-	var/safetyposition = 1				//the safety position you see not the one you have 0 = off
+	var/safetyposition = 0				//the safety position you see not the one you have 0 = off
 	var/safetyon = 0				//the safetys actual position
 	var/safetybroken = 0				//whether the safetys lever is atached
 
