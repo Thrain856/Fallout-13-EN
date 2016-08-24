@@ -87,6 +87,8 @@
 	var/list/sup = list()
 	var/list/civ = list()
 	var/list/bot = list()
+	var/list/leg = list() //ADDED LEGION
+	var/list/wast = list() //ADDED WASTELAND
 	var/list/misc = list()
 	var/dat = {"
 	<head><style>
@@ -130,9 +132,17 @@
 		if(rank in nonhuman_positions)
 			bot[name] = rank
 			department = 1
+		if(rank in legion_positions)
+			leg[name] = rank
+			department = 1
+		if(rank in wasteland_positions)
+			wast[name] = rank
+			department = 1
 		if(!department && !(name in heads))
 			misc[name] = rank
 	if(heads.len > 0)
+		//Testing colspan 2, adjust as needed.
+		dat += "<tr><th colspan=4>~Vault Personnel~</th></tr>"
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(var/name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td></tr>"
@@ -173,12 +183,22 @@
 		for(var/name in bot)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[bot[name]]</td></tr>"
 			even = !even
-	// misc guys
 	if(misc.len > 0)
 		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
 		for(var/name in misc)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[misc[name]]</td></tr>"
 			even = !even
+	if(leg.len > 0) //Adds legion to the manifest
+		dat += "<tr><th1 colspan=4>~Legion~</th></tr>"
+		for(var/name in leg)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[leg[name]]</td></tr>"
+			even = !even
+	if(wast.len > 0) //Adds wasteland roles to the manifest
+		dat += "<tr><th1 colspan=4>~Wasteland~</th></tr>"
+		for(var/name in wast)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[wast[name]]</td></tr>"
+			even = !even
+	// misc guys will go in the vault.
 
 	dat += "</table>"
 	dat = replacetext(dat, "\n", "")
