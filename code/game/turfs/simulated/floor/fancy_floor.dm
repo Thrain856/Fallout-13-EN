@@ -21,11 +21,12 @@
 		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 		return
 
-/turf/simulated/floor/grass
+/turf/simulated/floor/grass/
 	name = "Grass patch"
 	icon_state = "grass"
 	floor_tile = /obj/item/stack/tile/grass
-	broken_states = list("sand")
+	explosion_block = 50
+	broken_states = list("hole")
 
 /turf/simulated/floor/grass/New()
 	..()

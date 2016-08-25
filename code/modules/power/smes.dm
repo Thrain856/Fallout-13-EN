@@ -43,16 +43,9 @@
 
 /obj/machinery/power/smes/New()
 	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/smes(null)
-	component_parts += new /obj/item/weapon/stock_parts/cell/high(null)
-	component_parts += new /obj/item/weapon/stock_parts/cell/high(null)
-	component_parts += new /obj/item/weapon/stock_parts/cell/high(null)
-	component_parts += new /obj/item/weapon/stock_parts/cell/high(null)
-	component_parts += new /obj/item/weapon/stock_parts/cell/high(null)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(null)
-	component_parts += new /obj/item/stack/cable_coil(null, 5)
-	RefreshParts()
+	var/obj/item/weapon/circuitboard/machine/B = new /obj/item/weapon/circuitboard/machine/smes(null)
+	B.apply_default_parts(src)
+
 	spawn(5)
 		dir_loop:
 			for(var/d in cardinal)
@@ -69,16 +62,30 @@
 		update_icon()
 	return
 
+/obj/item/weapon/circuitboard/machine/smes
+	name = "circuit board (SMES)"
+	build_path = /obj/machinery/power/smes
+	origin_tech = "programming=3;powerstorage=3;engineering=3"
+	req_components = list(
+							/obj/item/stack/cable_coil = 5,
+							/obj/item/weapon/stock_parts/cell = 5,
+							/obj/item/weapon/stock_parts/capacitor = 1)
+	def_components = list(/obj/item/weapon/stock_parts/cell = /obj/item/weapon/stock_parts/cell/high/empty)
+
 /obj/machinery/power/smes/RefreshParts()
 	var/IO = 0
-	var/C = 0
+	var/MC = 0
+	var/C
 	for(var/obj/item/weapon/stock_parts/capacitor/CP in component_parts)
 		IO += CP.rating
-	input_level_max = 200000 * IO
-	output_level_max = 200000 * IO
+	input_level_max = initial(input_level_max) * IO
+	output_level_max = initial(output_level_max) * IO
 	for(var/obj/item/weapon/stock_parts/cell/PC in component_parts)
-		C += PC.maxcharge
-	capacity = C / (15000) * 1e6
+		MC += PC.maxcharge
+		C += PC.charge
+	capacity = MC / (15000) * 1e6
+	if(!initial(charge) && !charge)
+		charge = C / 15000 * 1e6
 
 /obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
 	//opening using screwdriver
@@ -114,7 +121,7 @@
 			return
 
 		if(terminal) //is there already a terminal ?
-			user << "<span class='warning'>This SMES already have a power terminal!</span>"
+			user << "<span class='warning'>This SMES already has a power terminal!</span>"
 			return
 
 		if(!panel_open) //is the panel open ?
@@ -128,14 +135,16 @@
 
 
 		var/obj/item/stack/cable_coil/C = I
-		if(C.amount < 10)
+		if(C.get_amount() < 10)
 			user << "<span class='warning'>You need more wires!</span>"
 			return
 
 		user << "<span class='notice'>You start building the power terminal...</span>"
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 
-		if(do_after(user, 20, target = src) && C.amount >= 10)
+		if(do_after(user, 20, target = src) && C.get_amount() >= 10)
+			if(C.get_amount() < 10 || !C)
+				return
 			var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
 			if (prob(50) && electrocute_mob(usr, N, N)) //animate the electrocution if uncautious and unlucky
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -156,13 +165,20 @@
 	//disassembling the terminal
 	if(istype(I, /obj/item/weapon/wirecutters) && terminal && panel_open)
 		terminal.dismantle(user)
+		return
 
 	//crowbarring it !
+	var/turf/T = get_turf(src)
 	if(default_deconstruction_crowbar(I))
-		message_admins("[src] has been deconstructed by [key_name_admin(user)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[user]'>FLW</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+		message_admins("[src] has been deconstructed by [key_name_admin(user)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[user]'>FLW</A>) in ([T.x],[T.y],[T.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)",0,1)
 		log_game("[src] has been deconstructed by [key_name(user)]")
 		investigate_log("SMES deconstructed by [key_name(user)]","singulo")
+		return
 
+	return ..()
+/obj/machinery/power/smes/deconstruction()
+	for(var/obj/item/weapon/stock_parts/cell/cell in component_parts)
+		cell.charge = (charge / capacity) * cell.maxcharge
 /obj/machinery/power/smes/Destroy()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		var/area/area = get_area(src)
@@ -185,10 +201,31 @@
 		terminal.master = null
 		terminal = null
 
-
-/obj/machinery/power/smes/update_icon()
+/atom/proc/cut_overlays()
 	overlays.Cut()
-	if(stat & BROKEN)	return
+	overlays += priority_overlays
+
+/atom/proc/add_overlay(image, priority = 0)
+	if(image in overlays)
+		return
+	var/list/new_overlays = overlays.Copy()
+	if(priority)
+		if(!priority_overlays)
+			priority_overlays = list()
+		priority_overlays += image
+		new_overlays += image
+	else
+		if(priority_overlays)
+			new_overlays -= priority_overlays
+			new_overlays += image
+			new_overlays += priority_overlays
+		else
+			new_overlays += image
+	overlays = new_overlays
+/obj/machinery/power/smes/update_icon()
+	cut_overlays()
+	if(stat & BROKEN)
+		return
 
 	if(panel_open)
 		return
@@ -209,19 +246,19 @@
 		smesImageCache[SMES_INPUT_ATTEMPT] = image('icons/obj/power.dmi', "smes-oc0")
 
 	if(outputting)
-		overlays += smesImageCache[SMES_OUTPUTTING]
+		add_overlay(smesImageCache[SMES_OUTPUTTING])
 	else
-		overlays += smesImageCache[SMES_NOT_OUTPUTTING]
+		add_overlay(smesImageCache[SMES_NOT_OUTPUTTING])
 
 	if(inputting)
-		overlays += smesImageCache[SMES_INPUTTING]
+		add_overlay(smesImageCache[SMES_INPUTTING])
 	else
 		if(input_attempt)
-			overlays += smesImageCache[SMES_INPUT_ATTEMPT]
+			add_overlay(smesImageCache[SMES_INPUT_ATTEMPT])
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
-		overlays += smesImageCache[clevel]
+		add_overlay(smesImageCache[clevel])
 	return
 
 
@@ -230,7 +267,8 @@
 
 /obj/machinery/power/smes/process()
 
-	if(stat & BROKEN)	return
+	if(stat & BROKEN)
+		return
 
 	//store machine state to see if we need to update the icon overlays
 	var/last_disp = chargedisplay()
@@ -256,22 +294,27 @@
 		else
 			if(input_attempt && input_available > 0 && input_available >= input_level)
 				inputting = 1
+	else
+		inputting = 0
 
 	//outputting
-	if(outputting)
-		output_used = min( charge/SMESRATE, output_level)		//limit output to that stored
+	if(output_attempt)
+		if(outputting)
+			output_used = min( charge/SMESRATE, output_level)		//limit output to that stored
 
-		charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
+			charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
 
-		add_avail(output_used)				// add output to powernet (smes side)
+			add_avail(output_used)				// add output to powernet (smes side)
 
-		if(output_used < 0.0001)			// either from no charge or set to 0
-			outputting = 0
-			investigate_log("lost power and turned <font color='red'>off</font>","singulo")
-	else if(output_attempt && charge > output_level && output_level > 0)
-		outputting = 1
+			if(output_used < 0.0001)		// either from no charge or set to 0
+				outputting = 0
+				investigate_log("lost power and turned <font color='red'>off</font>","singulo")
+		else if(output_attempt && charge > output_level && output_level > 0)
+			outputting = 1
+		else
+			output_used = 0
 	else
-		output_used = 0
+		outputting = 0
 
 	// only update icon if state changed
 	if(last_disp != chargedisplay() || last_chrg != inputting || last_onln != outputting)
@@ -328,7 +371,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, force_open = force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "smes", name, 500, 455)
-		ui.open()
+
 
 /obj/machinery/power/smes/get_ui_data()
 	var/list/data = list(
@@ -353,16 +396,17 @@
 /obj/machinery/power/smes/ui_act(action, params)
 	if(..())
 		return
-
 	switch(action)
 		if("tryinput")
 			input_attempt = !input_attempt
 			log_smes(usr.ckey)
 			update_icon()
+			. = TRUE
 		if("tryoutput")
 			output_attempt = !output_attempt
 			log_smes(usr.ckey)
 			update_icon()
+			. = TRUE
 		if("input")
 			switch(params["set"])
 				if("custom")

@@ -23,7 +23,7 @@
 	var/frequency = null
 	var/build_path = null
 	var/board_type = "computer"
-	var/list/req_components = null
+	//var/list/req_components = null
 	var/powernet = null
 	var/list/records = null
 	var/frame_desc = null

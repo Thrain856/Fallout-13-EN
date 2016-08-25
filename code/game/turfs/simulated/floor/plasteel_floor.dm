@@ -429,7 +429,7 @@
 	icon_state = "sandstonevault"
 
 
-/turf/simulated/floor/plasteel/elevatorshaft
+/turf/simulated/floor/plasteel/shaft
 	icon_state = "elevatorshaft"
 
 /turf/simulated/floor/plasteel/bluespace

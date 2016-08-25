@@ -1,4 +1,4 @@
-		#define CROSSLINKED 2
+	    #define CROSSLINKED 2
 		#define SELFLOOPING 1
 		#define UNAFFECTED 0
 		#define MAIN_STATION "Main Station"

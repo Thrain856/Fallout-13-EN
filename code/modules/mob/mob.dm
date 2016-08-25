@@ -21,10 +21,15 @@ var/next_mob_id = 0
 	prepare_huds()
 	..()
 
-/atom/proc/prepare_huds()
+/*/atom/proc/prepare_huds()
 	for(var/hud in hud_possible)
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
-
+		hud_list[hud] = image('icons/mob/hud.dmi', src, "")*/
+/atom/proc/prepare_huds()
+	hud_list = list()
+	for(var/hud in hud_possible)
+		var/image/I = image('icons/mob/hud.dmi', src, "")
+		I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+		hud_list[hud] = I
 /mob/proc/Cell()
 	set category = "Admin"
 	set hidden = 1

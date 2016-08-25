@@ -88,7 +88,7 @@
 /datum/mapGenerator/ca/caves
 	b_rule = list(5,6,7,8)
 	s_rule = list(4)
-	type_map = list(/turf/simulated/floor/plating/wasteland/basalt,/turf/simulated/mineral/volcanic)
+	type_map = list(/turf/simulated/floor/wasteland/basalt,/turf/simulated/mineral/volcanic)
 	iterations = 5
 
 /datum/mapGenerator/ca/maze
