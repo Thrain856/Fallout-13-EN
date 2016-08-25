@@ -72,7 +72,7 @@ Warden
 	flag = WARDEN
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Vault"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -127,7 +127,7 @@ Ranger
 	flag = DETECTIVE
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "NCR"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -370,7 +370,7 @@ Security Officer
 	flag = OFFICER
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Vault"
 	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the head of security, and the head of your assigned department (if applicable)"
