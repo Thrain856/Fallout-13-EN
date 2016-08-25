@@ -161,7 +161,7 @@ Legion
 	flag = LEGRECRUIT
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Legion"
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the head of security"
@@ -203,7 +203,7 @@ Legion
 	flag = LEGDECAN
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Legion"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of security"
@@ -245,7 +245,7 @@ Legion
 	flag = LEGVEX
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Legion"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of security"
@@ -287,7 +287,7 @@ Legion
 	flag = LEGCENTURION
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Legion"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -328,7 +328,7 @@ Legion
 	flag = LEGLEGAT
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Legion"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
