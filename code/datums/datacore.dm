@@ -103,6 +103,7 @@
 	<tr class='head'><th>Name</th><th>Rank</th></tr>
 	"}
 	var/even = 0
+	var/banner = 0
 	// sort mobs
 	for(var/datum/data/record/t in data_core.general)
 		var/name = t.fields["name"]
@@ -111,27 +112,35 @@
 		if(rank in command_positions)
 			heads[name] = rank
 			department = 1
+			banner = 1
 		if(rank in security_positions)
 			sec[name] = rank
 			department = 1
+			banner = 1
 		if(rank in engineering_positions)
 			eng[name] = rank
 			department = 1
+			banner = 1
 		if(rank in medical_positions)
 			med[name] = rank
 			department = 1
+			banner = 1
 		if(rank in science_positions)
 			sci[name] = rank
 			department = 1
+			banner = 1
 		if(rank in supply_positions)
 			sup[name] = rank
 			department = 1
+			banner = 1
 		if(rank in civilian_positions)
 			civ[name] = rank
 			department = 1
+			banner = 1
 		if(rank in nonhuman_positions)
 			bot[name] = rank
 			department = 1
+			banner = 1
 		if(rank in legion_positions)
 			leg[name] = rank
 			department = 1
@@ -140,9 +149,9 @@
 			department = 1
 		if(!department && !(name in heads))
 			misc[name] = rank
-	if(heads.len > 0)
-		//Testing colspan 2, adjust as needed.
+	if(banner)
 		dat += "<tr><th colspan=4><b>~Vault Personnel~</b></th></tr>"
+	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(var/name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td></tr>"
