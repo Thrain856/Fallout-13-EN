@@ -4,9 +4,9 @@ Captain
 /datum/job/captain
 	title = "Overseer"
 	flag = CAPTAIN
-	department_head = list("Centcom")
+	department_head = list("Vault-tec")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Vault"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "Vault-tec"
@@ -65,10 +65,10 @@ Head of Personnel
 	flag = HOP
 	department_head = list("Overseer")
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "Vault"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the the overseer"
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	minimal_player_age = 10
