@@ -938,7 +938,7 @@
 			return
 
 		if(module.type == /obj/item/weapon/robot_module/miner)
-			if(istype(loc, /turf/simulated/floor/plating/wasteland))
+			if(istype(loc, /turf/simulated/floor/wasteland))
 				if(istype(module_state_1,/obj/item/weapon/storage/bag/ore))
 					loc.attackby(module_state_1,src)
 				else if(istype(module_state_2,/obj/item/weapon/storage/bag/ore))

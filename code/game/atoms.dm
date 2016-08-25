@@ -1,22 +1,26 @@
 /atom
-	layer = 2
+	layer = TURF_LAYER
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast = null
 	var/list/blood_DNA
+	var/admin_spawned = 0	//was this spawned by an admin? used for stat tracking stuff.
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
 
 	//This atom's HUD (med/sec, etc) images. Associative list.
-	var/list/image/hud_list = list()
+	var/list/image/hud_list = null
 	//HUD images that this atom can provide.
 	var/list/hud_possible
 
 	//Value used to increment ex_act() if reactionary_explosions is on
 	var/explosion_block = 0
+
+	//overlays that should remain on top and not normally be removed, like c4.
+	var/list/priority_overlays
 
 /atom/proc/meteorhit(obj/meteor as obj)
 	return

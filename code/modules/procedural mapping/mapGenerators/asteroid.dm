@@ -1,6 +1,6 @@
 //wasteland turfs
 /datum/mapGeneratorModule/bottomLayer/wastelandTurfs
-	spawnableTurfs = list(/turf/simulated/floor/plating/wasteland = 100)
+	spawnableTurfs = list(/turf/simulated/floor/wasteland = 100)
 
 /datum/mapGeneratorModule/bottomLayer/wastelandWalls
 	spawnableTurfs = list(/turf/simulated/mineral = 100)
