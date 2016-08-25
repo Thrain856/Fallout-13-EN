@@ -34,9 +34,10 @@ var/datum/subsystem/job/SSjob
 		desert_occupations += job
 
 
-/datum/subsystem/job/proc/SetupOccupations(faction = "Station")
+/datum/subsystem/job/proc/SetupOccupations()
 	SetupDesertOccupations()
 	occupations = list()
+	var/list/pregame_factions = list("Vault")
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
 		world << "<span class='boldannounce'>Error setting up jobs, no job datums found</span>"
@@ -45,7 +46,7 @@ var/datum/subsystem/job/SSjob
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
 		if(!job)	continue
-		if(job.faction != faction)	continue
+		if(!(job.faction in faction))	continue
 		if(!job.config_check()) continue
 		occupations += job
 
