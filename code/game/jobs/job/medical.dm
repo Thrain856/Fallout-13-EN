@@ -56,7 +56,7 @@ Medical Doctor
 	flag = DOCTOR
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
-	faction = "Vault"
+	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
@@ -89,7 +89,7 @@ Chemist
 	flag = CHEMIST
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
-	faction = "Vault"
+	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer"

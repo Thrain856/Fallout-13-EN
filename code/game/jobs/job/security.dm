@@ -72,7 +72,7 @@ Warden
 	flag = WARDEN
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Vault"
+	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -127,7 +127,7 @@ Ranger
 	flag = DETECTIVE
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "NCR"
+	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -161,7 +161,7 @@ Legion
 	flag = LEGRECRUIT
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Legion"
+	faction = "Station"
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the head of security"
@@ -203,7 +203,7 @@ Legion
 	flag = LEGDECAN
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Legion"
+	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of security"
@@ -245,7 +245,7 @@ Legion
 	flag = LEGVEX
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Legion"
+	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of security"
@@ -287,7 +287,7 @@ Legion
 	flag = LEGCENTURION
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Legion"
+	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -328,7 +328,7 @@ Legion
 	flag = LEGLEGAT
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Legion"
+	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the head of security"
@@ -370,7 +370,7 @@ Security Officer
 	flag = OFFICER
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
-	faction = "Vault"
+	faction = "Station"
 	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the head of security, and the head of your assigned department (if applicable)"
