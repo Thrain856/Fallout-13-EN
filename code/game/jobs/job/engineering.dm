@@ -55,11 +55,11 @@ Chief Engineer
 Station Engineer
 */
 /datum/job/engineer
-	title = "Station Engineer"
+	title = "Engineer"
 	flag = ENGINEER
 	department_head = list("Chief Engineer")
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "Vault"
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the chief engineer"
@@ -73,7 +73,7 @@ Station Engineer
 									access_external_airlocks, access_construction, access_tcomsat)
 
 /datum/outfit/job/engineer
-	name = "Station Engineer"
+	name = "Engineer"
 
 	gloves = /obj/item/clothing/gloves/pda/engineering
 	ears = /obj/item/device/radio/headset/headset_eng
