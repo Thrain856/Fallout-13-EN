@@ -1,48 +1,55 @@
-
-var/const/ENGSEC			=(1<<0)
-
+//~~Vault 113~~
 var/const/CAPTAIN			=(1<<0)
-var/const/LEGRECRUIT		=(1<<1)
+var/const/HOP				=(1<<0)
+//var/const/RD				=(1<<0)
+//var/const/CMO				=(1<<3)
+
+//	Security
 var/const/WARDEN			=(1<<2)
 var/const/DETECTIVE			=(1<<3)
-
 var/const/OFFICER			=(1<<4)
-var/const/LEGDECAN			=(1<<5)
+var/const/ENGSEC			=(1<<0)
+
+//	Engineering ~ Robotics
 var/const/ENGINEER			=(1<<6)
-var/const/LEGVEX			=(1<<7)
-var/const/ROBOTICIST		=(1<<8)
 var/const/AI				=(1<<9)
+var/const/ROBOTICIST		=(1<<8)
 var/const/CYBORG			=(1<<10)
-var/const/LEGCENTURION		=(1<<11)
-var/const/LEGLEGAT			=(1<<12)
 
-var/const/MEDSCI			=(1<<1)
-
-//var/const/RD				=(1<<0)
+//	Research
 var/const/SCIENTIST			=(1<<1)
 var/const/CHEMIST			=(1<<2)
-//var/const/CMO				=(1<<3)
+var/const/MEDSCI			=(1<<1)
+
+//	Medical
 var/const/DOCTOR			=(1<<4)
 //var/const/GENETICIST		=(1<<5)
 //var/const/VIROLOGIST		=(1<<6)
 
-
+//	Civilian
 var/const/CIVILIAN			=(1<<2)
-
-var/const/HOP				=(1<<0)
 var/const/BARTENDER			=(1<<1)
 var/const/BOTANIST			=(1<<2)
 var/const/COOK				=(1<<3)
 var/const/JANITOR			=(1<<4)
-//var/const/LIBRARIAN			=(1<<5)
+//var/const/LIBRARIAN		=(1<<5)
 var/const/QUARTERMASTER		=(1<<6)
 var/const/CARGOTECH			=(1<<7)
 var/const/MINER				=(1<<8)
 //var/const/LAWYER			=(1<<9)
-//var/const/CHAPLAIN			=(1<<10)
-//var/const/CLOWN				=(1<<11)
-//var/const/MIME				=(1<<12)
+//var/const/CHAPLAIN		=(1<<10)
+//var/const/CLOWN			=(1<<11)
+//var/const/MIME			=(1<<12)
 var/const/ASSISTANT			=(1<<13)
+
+//~~Legion~~
+var/const/LEGRECRUIT		=(1<<1)
+var/const/LEGDECAN			=(1<<5)
+var/const/LEGVEX			=(1<<7)
+var/const/LEGCENTURION		=(1<<11)
+var/const/LEGLEGAT			=(1<<12)
+
+//~~Wasteland~~
 var/const/SCAVENGER         =(1<<14)
 var/const/REGULATOR         =(1<<15)
 var/const/SETTLER         	=(1<<16)
@@ -56,11 +63,6 @@ var/list/assistant_occupations = list(
 //	"Chaplain",
 //	"Lawyer",
 //	"Librarian",
-	"Regulator",
-	"Settler",
-	"Wastelandmedic",
-	"Raider",
-	"Scavenger"
 )
 
 
@@ -123,11 +125,6 @@ var/list/security_positions = list(
 //	"Head of Security",
 	"Warden",
 	"Detective",
-	"Legion Recruit",
-	"Legion Decan",
-	"Legion Vexillarius",
-	"Legion Centurion",
-	"Legion Legat",
 	"Security Officer"
 )
 
@@ -138,6 +135,21 @@ var/list/nonhuman_positions = list(
 	"pAI"
 )
 
+var/list/legion_positions = list(
+	"Legion Recruit",
+	"Legion Decan",
+	"Legion Vexillarius",
+	"Legion Centurion",
+	"Legion Legat",
+)
+
+var/list/wasteland_positions = list(
+	"Regulator",
+	"Settler",
+	"Wastelandmedic",
+	"Raider",
+	"Scavenger"
+)
 
 /proc/guest_jobbans(job)
 	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))
