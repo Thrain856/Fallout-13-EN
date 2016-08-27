@@ -5,7 +5,6 @@
 Captain=1,1
 Head of Personnel=1,1
 Head of Security=1,1
-Chief Engineer=1,1
 Research Director=1,1
 Chief Medical Officer=1,1
 
@@ -27,8 +26,7 @@ Lawyer=2,2
 
 Chaplain=1,1
 
-Station Engineer=5,5
-Atmospheric Technician=3,2
+Engineer=4,4
 
 Medical Doctor=5,3
 Chemist=2,2
