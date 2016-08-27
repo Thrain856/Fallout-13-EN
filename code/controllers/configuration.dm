@@ -128,12 +128,12 @@
 	var/no_summon_magic		//Fun
 	var/no_summon_events	//Allowed
 
-	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	var/alert_desc_green = "All threats to the vault have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	var/alert_desc_blue_upto = "The vault has received reliable information about possible hostile activity in or near the vault. Security staff may have weapons visible, random searches are permitted."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/alert_desc_delta = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	var/alert_desc_red_upto = "There is an immediate serious threat to the vault. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	var/alert_desc_red_downto = "The vault's destruction has been averted. There is still however an immediate serious threat to the vault. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	var/alert_desc_delta = "Destruction of the vault is imminent. All crew are instructed to obey all instructions given by the Overseer. Any violations of these orders can be punished by death. This is not a drill."
 
 	var/health_threshold_crit = 0
 	var/health_threshold_dead = -100
