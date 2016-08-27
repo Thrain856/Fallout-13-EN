@@ -326,7 +326,7 @@
 		if(access_heads)
 			return "Bridge"
 		if(access_captain)
-			return "Captain"
+			return "Overseer"
 		if(access_all_personal_lockers)
 			return "Personal Lockers"
 		if(access_chapel_office)
@@ -424,10 +424,9 @@
 			return "Code Gold"
 
 /proc/get_all_jobs()
-	return list("Assistant", "Captain", "Head of Personnel", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician",
-				"Shaft Miner", "Clown", "Mime", "Janitor", "Librarian", "Lawyer", "Chaplain", "Chief Engineer", "Engineer",
-				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
-				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer")
+	return list("Assistant", "Overseer", "Head of Personnel", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician",
+				"Shaft Miner", "Janitor", "Engineer", "Medical Doctor", "Chemist", "Scientist", "Roboticist", "Warden",
+				"Security Officer")
 
 /proc/get_all_job_icons() //For all existing HUD icons
 	return get_all_jobs() + list("Prisoner")
