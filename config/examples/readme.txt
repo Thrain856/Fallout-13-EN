@@ -1,0 +1,1 @@
+This folder is meant to contain example config files for any configs intentionally left out of the github repo.  You must copy them into the parent config folder for them to work.
