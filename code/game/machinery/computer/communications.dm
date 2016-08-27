@@ -422,7 +422,7 @@ var/const/CALL_SHUTTLE_REASON_LENGTH = 12
 		if(STATE_STATUSDISPLAY)
 			dat += "Set Status Displays<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Evacuation ETA</A> \]<BR>"
+			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Evacuation Time</A> \]<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
 			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
@@ -479,7 +479,7 @@ var/const/CALL_SHUTTLE_REASON_LENGTH = 12
 	dat += "<input type='hidden' name='src' value='\ref[src]'>"
 	dat += "<input type='hidden' name='operation' value='[ai_interface ? "ai-callshuttle2" : "callshuttle2"]'>"
 	dat += "<b>Nature of emergency:</b><BR> <input type='text' id='reasonfield' name='call' style='width:250px; background-color:#FFDDDD; onkeydown='getLength() onkeyup='getLength()' onkeypress='getLength()'>"
-	dat += "<BR>Are you sure you want to start an evacuation? \[ <a href='#' onclick='submit()'>Call</a> \]"
+	dat += "<BR>Are you sure you want to start an evacuation? \[ <a href='#' onclick='submit()'>Initiate</a> \]"
 	return dat
 
 /obj/machinery/computer/communications/proc/get_cancel_shuttle_form()
@@ -538,7 +538,7 @@ var/const/CALL_SHUTTLE_REASON_LENGTH = 12
 		if(STATE_STATUSDISPLAY)
 			dat += "Set Status Displays<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Evacuation ETA</A> \]<BR>"
+			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Evacuation Time</A> \]<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
 			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
