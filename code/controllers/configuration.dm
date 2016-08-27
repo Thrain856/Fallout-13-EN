@@ -63,14 +63,14 @@
 	var/minimal_access_threshold = 0	//If the number of players is larger than this threshold, minimal access will be turned on.
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
 	var/jobs_have_maint_access = 0 		//Who gets maint access?  See defines above.
-	var/sec_start_brig = 0				//makes sec start in brig or dept sec posts
+	var/sec_start_brig = 0				//makes sec start in brig or dept sec post
 
 	var/server
 	var/banappeals
 	var/wikiurl = "http://wasteland.expert" // default wiki link
-	var/forumurl = "http://wasteland.expert" // default forums
-	var/rulesurl = "https://www.reddit.com/r/Fallout13/" // default rules
-	var/githuburl = "https://github.com/BartNixon/Fallout13" //default github
+	var/forumurl = "http://longedprey.x10host.com/index.php" // default forums
+	var/rulesurl = "http://longedprey.x10host.com/showthread.php?tid=3" // default rules
+	var/githuburl = "https://github.com/Lykayos/Fallout-13-EN" //default github
 
 	var/forbid_singulo_possession = 0
 	var/useircbot = 0
