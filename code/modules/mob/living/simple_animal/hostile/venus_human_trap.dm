@@ -21,16 +21,16 @@
 	anchors += locate(x+2,y-2,z)
 
 	for(var/turf/T in anchors)
-		var/datum/beam/B = Beam(T,"vine",'icons/effects/spacevines.dmi',INFINITY, 5,/obj/effect/ebeam/vine)
-		B.sleep_time = 10 //these shouldn't move, so let's slow down updates to 1 second (any slower and the deletion of the vines would be too slow)
+		//var/datum/beam/B = Beam(T,"vine",'icons/effects/spacevines.dmi',INFINITY, 5,/obj/effect/ebeam/vine)
+		//B.sleep_time = 10 //these shouldn't move, so let's slow down updates to 1 second (any slower and the deletion of the vines would be too slow)
 
 	spawn(growth_time)
 		visible_message("<span class='danger'>the plant has borne fruit!</span>")
-		new /mob/living/simple_animal/hostile/venus_human_trap (get_turf(src))
+		//new /mob/living/simple_animal/hostile/venus_human_trap (get_turf(src))
 		qdel(src)
 
 
-/obj/effect/ebeam/vine
+/*/obj/effect/ebeam/vine
 	name = "thick vine"
 	mouse_opacity = 1
 	desc = "a thick vine, painful to the touch"
@@ -52,6 +52,7 @@
 	health = 75
 	maxHealth = 75
 	ranged = 1
+	sight = 0
 	harm_intent_damage = 5
 	melee_damage_lower = 25
 	melee_damage_upper = 25
@@ -111,4 +112,4 @@
 
 
 /mob/living/simple_animal/hostile/venus_human_trap/death()
-	qdel(src)
+	qdel(src)*/
