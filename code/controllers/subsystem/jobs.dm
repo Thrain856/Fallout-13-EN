@@ -37,7 +37,7 @@ var/datum/subsystem/job/SSjob
 /datum/subsystem/job/proc/SetupOccupations()
 	SetupDesertOccupations()
 	occupations = list()
-	var/list/pregame_factions = list("Vault", "Legion", "NCR")
+	var/list/pregame_factions = list("Vault", "Legion", "NCR", "Desert")
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
 		world << "<span class='boldannounce'>Error setting up jobs, no job datums found</span>"
