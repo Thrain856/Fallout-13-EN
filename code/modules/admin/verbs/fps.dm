@@ -1,5 +1,5 @@
 //replaces the old Ticklag verb, fps is easier to understand
-/*/client/proc/fps()
+/client/proc/fps()
 	set category = "Debug"
 	set name = "Set fps"
 	set desc = "Sets game speed in frames-per-second. Can potentially break the game"
@@ -20,4 +20,4 @@
 	message_admins(msg, 0)
 	feedback_add_details("admin_verb","TICKLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	world.fps = fps*/
+	world.fps = fps
