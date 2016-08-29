@@ -151,6 +151,14 @@ var/list/wasteland_positions = list(
 	"Scavenger"
 )
 
+var/list/preference_bold_list = list (
+	"Overseer",
+	"Head of Personnel",
+	"Ranger",
+	"Legion Legat",
+	"AI"
+)
+
 /proc/guest_jobbans(job)
 	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))
 

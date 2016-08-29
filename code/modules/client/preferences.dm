@@ -462,7 +462,7 @@ var/list/preferences_datums = list()
 			else
 				HTML += "<font color=red>[rank]</font></td><td><font color=red><b> \[NON-HUMAN\]</b></font></td></tr>"
 			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in preference_bold_list))//located in code/game/jobs/jobs.dm Bolds Commander equivelent jobs.
 			HTML += "<b><span class='dark'>[rank]</span></b>"
 		else
 			HTML += "<span class='dark'>[rank]</span>"
