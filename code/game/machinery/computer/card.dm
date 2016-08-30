@@ -35,7 +35,14 @@ var/time_last_changed_position = 0
 		"Chief Engineer",
 		"Research Director",
 		"Chief Medical Officer",
-		"Chaplain")
+		"Chaplain",
+		"Overseer",
+		"Ranger",
+		"Legion Recruit",
+		"Legion Decan",
+		"Legion Vexillarius",
+		"Legion Centurion",
+		"Legion Legat")
 
 	//The scaling factor of max total positions in relation to the total amount of people on board the station in %
 	var/max_relative_positions = 30 //30%: Seems reasonable, limit of 6 @ 20 players
@@ -103,11 +110,11 @@ var/time_last_changed_position = 0
 	user.set_machine(src)
 	var/dat
 	if(!ticker)	return
-	if (mode == 1) // accessing crew manifest
+	if (mode == 1) // accessing vault manifest
 		var/crew = ""
 		for(var/datum/data/record/t in sortRecord(data_core.general))
 			crew += t.fields["name"] + " - " + t.fields["rank"] + "<br>"
-		dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>[crew]<a href='?src=\ref[src];choice=print'>Print</a><br><br><a href='?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br></tt>"
+		dat = "<tt><b>Vault Manifest:</b><br>Please use security record computer to modify entries.<br><br>[crew]<a href='?src=\ref[src];choice=print'>Print</a><br><br><a href='?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br></tt>"
 
 	else if(mode == 2)
 		// JOB MANAGEMENT
@@ -199,7 +206,7 @@ var/time_last_changed_position = 0
 			header += "<div align='center'><br>"
 			header += "<a href='?src=\ref[src];choice=modify'>Remove [target_name]</a> || "
 			header += "<a href='?src=\ref[src];choice=scan'>Remove [scan_name]</a> <br> "
-			header += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
+			header += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Vault Manifest</a> || "
 			header += "<a href='?src=\ref[src];choice=logout'>Log Out</a></div>"
 
 		header += "<hr>"
@@ -283,7 +290,7 @@ var/time_last_changed_position = 0
 
 		else
 			body = "<a href='?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
-			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
+			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Vault Manifest</a>"
 			if(!target_dept)
 				body += "<br><hr><a href = '?src=\ref[src];choice=mode;mode_target=2'>Job Management</a>"
 
@@ -464,11 +471,11 @@ var/time_last_changed_position = 0
 				printing = 1
 				sleep(50)
 				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
-				var/t1 = "<B>Crew Manifest:</B><BR>"
+				var/t1 = "<B>Vault Manifest:</B><BR>"
 				for(var/datum/data/record/t in sortRecord(data_core.general))
 					t1 += t.fields["name"] + " - " + t.fields["rank"] + "<br>"
 				P.info = t1
-				P.name = "paper: 'Crew Manifest'"
+				P.name = "paper: 'Vault Manifest'"
 				printing = null
 	if (modify)
 		modify.update_label()
