@@ -1,5 +1,12 @@
 var/datum/subsystem/job/SSjob
 
+///Closes job slots once round ends
+/datum/subsystem/job/proc/close_excess_slots()
+	for(var/datum/job/job in SSjob.occupations)
+		if(!job.faction == "Desert") //closes all non-wasteland jobs.
+			job.total_positions = 0
+		else continue
+
 /datum/subsystem/job
 	name = "Jobs"
 	priority = 5
@@ -22,7 +29,7 @@ var/datum/subsystem/job/SSjob
 		LoadJobs()
 	..()
 
-/datum/subsystem/job/proc/SetupDesertOccupations()
+/*/datum/subsystem/job/proc/SetupDesertOccupations()
 	desert_occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
 	for (var/J in all_jobs)
@@ -31,11 +38,11 @@ var/datum/subsystem/job/SSjob
 			continue
 		if(job.faction != "Desert")
 			continue
-		desert_occupations += job
+		desert_occupations += job */
 
 
 /datum/subsystem/job/proc/SetupOccupations()
-	SetupDesertOccupations()
+//	SetupDesertOccupations()
 	occupations = list()
 	var/list/pregame_factions = list("Vault", "Legion", "NCR", "Desert")
 	var/list/all_jobs = subtypesof(/datum/job)
