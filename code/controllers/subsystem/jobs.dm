@@ -3,9 +3,13 @@ var/datum/subsystem/job/SSjob
 ///Closes job slots once round ends
 /datum/subsystem/job/proc/close_excess_slots()
 	for(var/datum/job/job in SSjob.occupations)
-		if(!job.faction == "Desert") //closes all non-wasteland jobs.
+		world << "DEBUG: [job] is being closed."
+		if(job.faction == "Desert") //closes all non-wasteland jobs.
+			world << "DEBUG: SKIP: [job] has been passed over."
+			continue
+		else
 			job.total_positions = 0
-		else continue
+			world << "DEBUG: [job] is set to [job.total_positions]."
 
 /datum/subsystem/job
 	name = "Jobs"
@@ -29,7 +33,7 @@ var/datum/subsystem/job/SSjob
 		LoadJobs()
 	..()
 
-/*/datum/subsystem/job/proc/SetupDesertOccupations()
+/*/datum/subsystem/job/proc/SetupDesertOccupations() REMOVEAZ
 	desert_occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
 	for (var/J in all_jobs)

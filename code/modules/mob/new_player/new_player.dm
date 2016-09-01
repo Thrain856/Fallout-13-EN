@@ -233,29 +233,53 @@
 						vote_on_poll(pollid, optionid, 1)
 
 /mob/new_player/proc/IsJobAvailable(rank)
-	/*var/datum/job/job = SSjob.GetJob(rank)
+	var/datum/job/job = SSjob.GetJob(rank)
+	world << "<b>DEBUG: [job] IsJobAvailable [job.total_positions].</b>"
+	if(job.total_positions == -1)
+		world << "DEBUG: 238 return 1"
+		return 1 //this ensures jobs intended to be unlimited are unlimited, and is easier to read.
 	if(!job)
+		world << "DEBUG: 241 return 0"
 		return 0
-	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+	if(jobban_isbanned(src,rank))
+		world << "DEBUG: 244 return 0"
+		return 0
+	if(!job.player_old_enough(src.client))
+		world << "DEBUG: 247 return 0"
+		return 0
+	if(job.current_positions >= job.total_positions)
+		world << "DEBUG: 250 return 0"
+		return 0
+	world << "DEBUG: ALL IF FAIL return 1"
+	return 1
+
+/*	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+		world << "DEBUG: Weird shit - [job]"
 		if(job.title == "Assistant")
 			if(isnum(client.player_age) && client.player_age <= 14) //Newbies can always be assistants
+				world << "DEBUG: Assistant? - [job]"
 				return 1
 			for(var/datum/job/J in SSjob.occupations)
 				if(J && J.current_positions < J.total_positions && J.title != job.title)
+					world << "DEBUG: What the bloody hell: [job]"
 					return 0
 		else
-			return 0*/
+			world << "DEBUG: ELSE [job]"
+			return 0
+	//wasteland jobs are always available REMOVEAZ
+//	return 1 REMOVEAZ
 
-	//wasteland jobs are always available
-	return 1
-
-	/*if(jobban_isbanned(src,rank))
+	if(jobban_isbanned(src,rank))
 		return 0
 	if(!job.player_old_enough(src.client))
 		return 0
 	if(config.enforce_human_authority && !client.prefs.pref_species.qualifies_for_rank(rank, client.prefs.features))
 		return 0
-	return 1*/
+	if(job.current_positions == 0)
+		world << "DEBUG: ~Custom~ [job]"
+		return 0
+	world << "DEBUG: RETURN 1 [job]"
+	return 1 */
 
 
 /mob/new_player/proc/AttemptLateSpawn(rank)
@@ -272,7 +296,33 @@
 	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
 	SSjob.EquipRank(character, rank, 1)					//equips the human
 
-	var/D = pick(latejoin)
+	var/Deploy
+	var/datum/job/job = SSjob.GetJob(rank)
+	switch(job.faction)
+		if("Vault")
+			Deploy = pick(latejoinvault)
+		if("NCR")
+			Deploy = pick(latejoinncr)
+		if("Legion")
+			Deploy = pick(latejoinlegion)
+		if("Desert")
+			Deploy = pick(latejoin)
+		else
+			Deploy = pick(latejoin)
+	if(!Deploy)
+		for(var/turf/T in get_area_turfs(/area/shuttle/arrival))
+			if(!T.density)
+				var/clear = 1
+				for(var/obj/O in T)
+					if(O.density)
+						clear = 0
+						break
+				if(clear)
+					Deploy = T
+					continue
+
+	character.loc = Deploy
+/*	var/D = pick(latejoin) //CHANGE THIS
 	if(!D)
 		for(var/turf/T in get_area_turfs(/area/shuttle/arrival))
 			if(!T.density)
@@ -285,7 +335,7 @@
 					D = T
 					continue
 
-	character.loc = D
+	character.loc = D */
 
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)
@@ -314,6 +364,7 @@
 					announcer.announce("ARRIVAL", character.real_name, rank, list()) //make the list empty to make it announce it in common
 
 /mob/new_player/proc/LateChoices()
+	world << "<b>DEBUG: LateChoices() active!</b>"
 	var/mills = world.time // 1/10 of a second, not real milliseconds but whatever
 	//var/secs = ((mills % 36000) % 600) / 10 //Not really needed, but I'll leave it here for refrence.. or something
 	var/mins = (mills % 36000) / 600
@@ -328,14 +379,24 @@
 			if(!SSshuttle.canRecall())
 				dat += "<div class='notice red'>The station is currently undergoing evacuation procedures.</div><br>"
 
-	/*var/available_job_count = 0
+	dat += "<div class='clearboth'>Late Join Positions:</div><br>"
+
+	for(var/datum/job/job in SSjob.occupations)
+		world << "<b><i>DEBUG: [job]</i></b>"
+		if(IsJobAvailable(job.title))
+			world << "DEBUG: IF ACTIVE"
+			dat += "<a class='otherPosition' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
+		else
+			world << "DEBUG: ELSE ACTIVE"
+			continue
+/*	var/available_job_count = 0
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
-			available_job_count++;*/
+			available_job_count++;
 
-	dat += "<div class='clearBoth'>Spawn as wastelander:</div><br>"
-	dat += "<div class='jobs'><div class='jobsColumn'>"
-	/*var/job_count = 0
+//	dat += "<div class='clearBoth'>Spawn as wastelander:</div><br>" FLAGOFDOOM
+//	dat += "<div class='jobs'><div class='jobsColumn'>" FLAGOFDOOM
+	var/job_count = 0
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			job_count++;
@@ -349,13 +410,13 @@
 		for(var/datum/job/job in SSjob.occupations)
 			if(job.title != "Assistant") continue
 			dat += "<a class='otherPosition' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
-			break*/
+			break
 
 	for(var/datum/job/job in SSjob.occupations)
 		dat += "<a class='otherPosition' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
 		//break
 
-	dat += "</div></div>"
+	dat += "</div></div>"*/
 
 	// Removing the old window method but leaving it here for reference
 	//src << browse(dat, "window=latechoices;size=300x640;can_close=1")
