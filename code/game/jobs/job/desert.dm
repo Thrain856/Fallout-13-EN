@@ -52,7 +52,7 @@ Regulator
 	flag = REGULATOR
 	department_flag = CIVILIAN
 	faction = "Desert" //desert faction shall disable appearing as scavenger after readying
-	total_positions = 4
+	total_positions = -1
 	spawn_positions = -1 //does not matter for late join
 	supervisors = "nobody"
 	selection_color = "#dddddd"
@@ -98,7 +98,7 @@ Raider
 	flag = RAIDER
 	department_flag = CIVILIAN
 	faction = "Desert" // This faction is used for late joins
-	total_positions = 3
+	total_positions = -1
 	spawn_positions = -1 //does not matter for late join
 	supervisors = "nobody"
 	selection_color = "#dddddd"
@@ -191,7 +191,7 @@ Wastelandmedic
 	flag = WASTELANDMEDIC
 	department_flag = CIVILIAN
 	faction = "Desert" //desert faction shall disable appearing as scavenger after readying
-	total_positions = 4
+	total_positions = -1
 	spawn_positions = -1 //does not matter for late join
 	supervisors = "nobody"
 	selection_color = "#dddddd"

@@ -28,6 +28,18 @@
 			latejoin += loc
 			qdel(src)
 			return
+		if("LateVault")
+			latejoinvault += loc
+			qdel(src)
+			return
+		if("LateNCR")
+			latejoinncr += loc
+			qdel(src)
+			return
+		if("LateLegion")
+			latejoinlegion += loc
+			qdel(src)
+			return
 		if("prisonwarp")
 			prisonwarp += loc
 			qdel(src)
@@ -260,3 +272,12 @@
 
 /obj/effect/landmark/latejoin
 	name = "JoinLate"
+
+obj/effect/landmark/latevault
+	name = "LateVault"
+
+obj/effect/landmark/latencr
+	name = "LateNCR"
+
+obj/effect/landmark/latelegion
+	name = "LateLegion"

@@ -52,9 +52,9 @@ var/const/LEGLEGAT			=(1<<12)
 //~~Wasteland~~
 var/const/SCAVENGER         =(1<<14)
 var/const/REGULATOR         =(1<<15)
-var/const/SETTLER         	=(1<<16)
-var/const/WASTELANDMEDIC	=(1<<17)
-var/const/RAIDER        	=(1<<18)
+var/const/SETTLER         	=(1<<9)
+var/const/WASTELANDMEDIC	=(1<<10)
+var/const/RAIDER        	=(1<<11)
 
 var/list/assistant_occupations = list(
 	"Assistant",

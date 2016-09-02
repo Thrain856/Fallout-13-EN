@@ -233,30 +233,18 @@
 						vote_on_poll(pollid, optionid, 1)
 
 /mob/new_player/proc/IsJobAvailable(rank)
-	/*var/datum/job/job = SSjob.GetJob(rank)
+	var/datum/job/job = SSjob.GetJob(rank)
+	if(job.total_positions == -1)
+		return 1 //this ensures jobs intended to be unlimited are unlimited, and is easier to read.
 	if(!job)
 		return 0
-	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		if(job.title == "Assistant")
-			if(isnum(client.player_age) && client.player_age <= 14) //Newbies can always be assistants
-				return 1
-			for(var/datum/job/J in SSjob.occupations)
-				if(J && J.current_positions < J.total_positions && J.title != job.title)
-					return 0
-		else
-			return 0*/
-
-	//wasteland jobs are always available
-	return 1
-
-	/*if(jobban_isbanned(src,rank))
+	if(jobban_isbanned(src,rank))
 		return 0
 	if(!job.player_old_enough(src.client))
 		return 0
-	if(config.enforce_human_authority && !client.prefs.pref_species.qualifies_for_rank(rank, client.prefs.features))
+	if(job.current_positions >= job.total_positions)
 		return 0
-	return 1*/
-
+	return 1
 
 /mob/new_player/proc/AttemptLateSpawn(rank)
 	if(!IsJobAvailable(rank))
@@ -272,8 +260,20 @@
 	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
 	SSjob.EquipRank(character, rank, 1)					//equips the human
 
-	var/D = pick(latejoin)
-	if(!D)
+	var/Deploy
+	var/datum/job/job = SSjob.GetJob(rank)
+	switch(job.faction)
+		if("Vault")
+			Deploy = pick(latejoinvault)
+		if("NCR")
+			Deploy = pick(latejoinncr)
+		if("Legion")
+			Deploy = pick(latejoinlegion)
+		if("Desert")
+			Deploy = pick(latejoin)
+		else
+			Deploy = pick(latejoin)
+	if(!Deploy)
 		for(var/turf/T in get_area_turfs(/area/shuttle/arrival))
 			if(!T.density)
 				var/clear = 1
@@ -282,10 +282,10 @@
 						clear = 0
 						break
 				if(clear)
-					D = T
+					Deploy = T
 					continue
 
-	character.loc = D
+	character.loc = Deploy
 
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)
@@ -328,34 +328,13 @@
 			if(!SSshuttle.canRecall())
 				dat += "<div class='notice red'>The station is currently undergoing evacuation procedures.</div><br>"
 
-	/*var/available_job_count = 0
-	for(var/datum/job/job in SSjob.occupations)
-		if(job && IsJobAvailable(job.title))
-			available_job_count++;*/
+	dat += "<div class='clearboth'>Late Join Positions:</div><br>"
 
-	dat += "<div class='clearBoth'>Spawn as wastelander:</div><br>"
-	dat += "<div class='jobs'><div class='jobsColumn'>"
-	/*var/job_count = 0
 	for(var/datum/job/job in SSjob.occupations)
-		if(job && IsJobAvailable(job.title))
-			job_count++;
-			if (job_count > round(available_job_count / 2))
-				dat += "</div><div class='jobsColumn'>"
-			var/position_class = "otherPosition"
-			if (job.title in command_positions)
-				position_class = "commandPosition"
-			dat += "<a class='[position_class]' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
-	if(!job_count) //if there's nowhere to go, assistant opens up.
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title != "Assistant") continue
+		if(IsJobAvailable(job.title))
 			dat += "<a class='otherPosition' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
-			break*/
-
-	for(var/datum/job/job in SSjob.desert_occupations)
-		dat += "<a class='otherPosition' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
-		//break
-
-	dat += "</div></div>"
+		else
+			continue
 
 	// Removing the old window method but leaving it here for reference
 	//src << browse(dat, "window=latechoices;size=300x640;can_close=1")

@@ -1,5 +1,16 @@
 var/datum/subsystem/job/SSjob
 
+///Closes job slots once round ends
+/datum/subsystem/job/proc/close_excess_slots()
+	for(var/datum/job/job in SSjob.occupations)
+		world << "DEBUG: [job] is being closed."
+		if(job.faction == "Desert") //closes all non-wasteland jobs.
+			world << "DEBUG: SKIP: [job] has been passed over."
+			continue
+		else
+			job.total_positions = 0
+			world << "DEBUG: [job] is set to [job.total_positions]."
+
 /datum/subsystem/job
 	name = "Jobs"
 	priority = 5
@@ -22,7 +33,7 @@ var/datum/subsystem/job/SSjob
 		LoadJobs()
 	..()
 
-/datum/subsystem/job/proc/SetupDesertOccupations()
+/*/datum/subsystem/job/proc/SetupDesertOccupations() REMOVEAZ
 	desert_occupations = list()
 	var/list/all_jobs = subtypesof(/datum/job)
 	for (var/J in all_jobs)
@@ -31,13 +42,13 @@ var/datum/subsystem/job/SSjob
 			continue
 		if(job.faction != "Desert")
 			continue
-		desert_occupations += job
+		desert_occupations += job */
 
 
 /datum/subsystem/job/proc/SetupOccupations()
-	SetupDesertOccupations()
+//	SetupDesertOccupations()
 	occupations = list()
-	var/list/pregame_factions = list("Vault", "Legion", "NCR")
+	var/list/pregame_factions = list("Vault", "Legion", "NCR", "Desert")
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
 		world << "<span class='boldannounce'>Error setting up jobs, no job datums found</span>"
@@ -358,12 +369,7 @@ var/datum/subsystem/job/SSjob
 
 //Gives the player the stuff he should have with his rank
 /datum/subsystem/job/proc/EquipRank(mob/living/H, rank, joined_late=0)
-	var/datum/job/job
-	if (joined_late==0)
-		job = GetJob(rank)
-	else
-		job = GetDesertJob(rank)
-
+	var/datum/job/job = GetJob(rank)
 	H.job = rank
 
 	//If we joined at roundstart we should be positioned at our workstation
@@ -413,7 +419,8 @@ var/datum/subsystem/job/SSjob
 		if(config.minimal_access_threshold)
 			H << "<FONT color='blue'><B>As this station was initially staffed with a [config.jobs_have_minimal_access ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></font>"
 	else
-		H << "<b>As the [rank], your main and only goal is to survive in the wasteland.</b>"
+		if(job.faction == "Wasteland")
+			H << "<b>As the [rank], your main and only goal is to survive in the wasteland.</b>"
 	H.update_hud() 	// Tmp fix for Github issue 1006. TODO: make all procs in update_icons.dm do client.screen |= equipment no matter what.
 	return 1
 

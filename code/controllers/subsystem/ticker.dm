@@ -178,6 +178,7 @@ var/datum/subsystem/ticker/ticker
 	collect_minds()
 	equip_characters()
 	data_core.manifest()
+	SSjob.close_excess_slots() //game_mode.dm
 
 	Master.RoundStart()
 
