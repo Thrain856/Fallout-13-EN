@@ -48,22 +48,22 @@
 		powered = 0
 
 /obj/item/weapon/defibrillator/proc/update_overlays()
-	cut_overlays()
+	overlays.Cut()
 	if(!on)
-		add_overlay("[initial(icon_state)]-paddles")
+		overlays += "[initial(icon_state)]-paddles"
 	if(powered)
-		add_overlay("[initial(icon_state)]-powered")
+		overlays += "[initial(icon_state)]-powered"
 	if(!bcell)
-		add_overlay("[initial(icon_state)]-nocell")
+		overlays += "[initial(icon_state)]-nocell"
 	if(!safety)
-		add_overlay("[initial(icon_state)]-emagged")
+		overlays += "[initial(icon_state)]-emagged"
 
 /obj/item/weapon/defibrillator/proc/update_charge()
 	if(powered) //so it doesn't show charge if it's unpowered
 		if(bcell)
 			var/ratio = bcell.charge / bcell.maxcharge
 			ratio = Ceiling(ratio*4) * 25
-			add_overlay("[initial(icon_state)]-charge[ratio]")
+			overlays += "[initial(icon_state)]-charge[ratio]"
 
 /obj/item/weapon/defibrillator/CheckParts()
 	bcell = locate(/obj/item/weapon/stock_parts/cell) in contents
