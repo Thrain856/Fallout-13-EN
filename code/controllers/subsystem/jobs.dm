@@ -369,12 +369,7 @@ var/datum/subsystem/job/SSjob
 
 //Gives the player the stuff he should have with his rank
 /datum/subsystem/job/proc/EquipRank(mob/living/H, rank, joined_late=0)
-	var/datum/job/job
-	if (joined_late==0)
-		job = GetJob(rank)
-	else
-		job = GetDesertJob(rank)
-
+	var/datum/job/job = GetJob(rank)
 	H.job = rank
 
 	//If we joined at roundstart we should be positioned at our workstation
@@ -424,7 +419,8 @@ var/datum/subsystem/job/SSjob
 		if(config.minimal_access_threshold)
 			H << "<FONT color='blue'><B>As this station was initially staffed with a [config.jobs_have_minimal_access ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></font>"
 	else
-		H << "<b>As the [rank], your main and only goal is to survive in the wasteland.</b>"
+		if(job.faction == "Wasteland")
+			H << "<b>As the [rank], your main and only goal is to survive in the wasteland.</b>"
 	H.update_hud() 	// Tmp fix for Github issue 1006. TODO: make all procs in update_icons.dm do client.screen |= equipment no matter what.
 	return 1
 
