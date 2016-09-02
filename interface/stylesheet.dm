@@ -1,15 +1,15 @@
 /client/script = {"<style>
-body					{font-family: "Courier New", Courier, monospace;}
+body					{font-family: Verdana, sans-serif;}
 
-h1, h2, h3, h4, h5, h6	{color: #cd3000;	font-family: Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6	{color:  #0000ff;font-family: Georgia, Verdana, sans-serif;}
 
 em						{font-style: normal;	font-weight: bold;}
 
-.motd					{color: #b55a23;	font-family: "Courier New", Courier, monospace;}
+.motd					{color: #638500;	font-family: "Courier New",  Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
-	{color: #cd3000;	text-decoration: underline;}
+	{color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
-	{color: #cd3000;}
+	{color: #638500;}
 
 .italics				{					font-style: italic;}
 
